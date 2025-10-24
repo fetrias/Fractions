@@ -29,46 +29,42 @@ class Program
                     continue;
                 }
 
-                SimplifyAndPrintFraction(numerator, denominator);
+                FractionSimplifier(numerator, denominator);
             }
             else
             {
                 Console.WriteLine("Нужны целые числа!");
             }
         }
-
-        Console.WriteLine("Работа программы завершена.");
     }
 
-    static void SimplifyAndPrintFraction(int numerator, int denominator)
+    static void FractionSimplifier(int numerator, int denominator)
     {
-        int originalNumerator = numerator;
-        int originalDenominator = denominator;
+        int firstNumerator = numerator;
+        int firstDenominator = denominator;
 
-        int gcd = FindGCD(Math.Abs(numerator), Math.Abs(denominator));
+        int nod = FindNOD(Math.Abs(numerator), Math.Abs(denominator));
 
-        int simplifiedNumerator = numerator / gcd;
-        int simplifiedDenominator = denominator / gcd;
+        int finalNumerator = numerator / nod;
+        int finalDenominator = denominator / nod;
 
-        if (simplifiedDenominator < 0)
+        if (finalDenominator < 0)
         {
-            simplifiedNumerator = -simplifiedNumerator;
-            simplifiedDenominator = -simplifiedDenominator;
+            finalNumerator = -finalNumerator;
+            finalDenominator = -finalDenominator;
         }
 
-        Console.WriteLine($"Исходная дробь: {originalNumerator} / {originalDenominator}");
-
-        if (simplifiedDenominator == 1)
+        if (finalDenominator == 1)
         {
-            Console.WriteLine($"Результат: {simplifiedNumerator}");
+            Console.WriteLine($"Результат: {finalNumerator}");
         }
         else
         {
-            Console.WriteLine($"Результат: {simplifiedNumerator} / {simplifiedDenominator}");
+            Console.WriteLine($"Результат: {finalNumerator} / {finalDenominator}");
         }
     }
 
-    static int FindGCD(int a, int b)
+    static int FindNOD(int a, int b)
     {
         while (b != 0)
         {
